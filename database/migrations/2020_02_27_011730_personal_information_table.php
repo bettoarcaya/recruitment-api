@@ -13,12 +13,11 @@ class PersonalInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('personal_datas', function (Blueprint $table) {
+        Schema::create('people', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->string('firstname');
             $table->string('gender');
             $table->date('born_date');
             $table->timestamps();
@@ -32,6 +31,6 @@ class PersonalInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('personal_datas');
+        Schema::dropIfExists('people');
     }
 }

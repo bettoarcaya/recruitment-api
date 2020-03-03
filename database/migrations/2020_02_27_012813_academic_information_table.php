@@ -13,12 +13,16 @@ class AcademicInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('academic_datas', function (Blueprint $table) {
+        Schema::create('backgrounds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('personal_info_id');
+            $table->unsignedBigInteger('person_id');
             $table->string('academic_level');
             $table->string('academic_espec');
             $table->timestamps();
+
+            $table->foreign('person_id')
+                  ->references('id')
+                  ->on('people');
         });
     }
 
@@ -29,6 +33,6 @@ class AcademicInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('academic_datas');
+        Schema::dropIfExists('backgrounds');
     }
 }

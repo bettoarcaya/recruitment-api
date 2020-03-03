@@ -12,6 +12,6 @@
 */
 
 Route::prefix('registration')->group(function() {
-    Route::get('/', 'RegistrationController@index');
+    //Route::get('/', 'RegistrationController@index');
     Route::post('/', 'RegistrationController@store');
 });

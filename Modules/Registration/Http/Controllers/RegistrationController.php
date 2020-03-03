@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Modules\Registration\Http\Requests\RegistrationRequest;
+use App\Repositories\RegistrationRepository;
 
 class RegistrationController extends Controller
 {
+    protected $RegistrationRepository;
+
+    public function __constrctor( RegistrationRepository $registration_repository )
+    {   
+        $this->RegistrationRepository = $registration_repository;
+    }
+
     /**
      * Display a listing of the resource.
      * @return Response
@@ -34,7 +42,13 @@ class RegistrationController extends Controller
      */
     public function store(RegistrationRequest $request)
     {
-           
+
+        $response = $this->RegistrationRepository->add($request->all());
+
+        return response()->json([
+            'message' => 'Registro exitoso',
+            'data'    => $response
+        ], 200);
     }
 
     /**

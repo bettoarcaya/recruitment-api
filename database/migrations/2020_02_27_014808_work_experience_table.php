@@ -15,9 +15,14 @@ class WorkExperienceTable extends Migration
     {
         Schema::create('work_experiences', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('person_id');
             $table->string('time');
             $table->string('position');
             $table->timestamps();
+
+            $table->foreign('person_id')
+                  ->references('id')
+                  ->on('people');
         });
     }
 
@@ -28,6 +33,6 @@ class WorkExperienceTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('work_experiences');
     }
 }
