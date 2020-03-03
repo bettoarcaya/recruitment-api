@@ -5,6 +5,7 @@ namespace Modules\Registration\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\Registration\Http\Requests\RegistrationRequest;
 
 class RegistrationController extends Controller
 {
@@ -28,12 +29,12 @@ class RegistrationController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
+     * @param RegistrationRequest $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(RegistrationRequest $request)
     {
-        
+           
     }
 
     /**
