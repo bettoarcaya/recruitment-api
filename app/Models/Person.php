@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Person extends Model
 {
     protected $table = 'People';
+    protected $with = ['backgrounds', 'work_experiences'];
     protected $fillable = [
         'firstname',
         'lastname',
@@ -14,4 +15,14 @@ class Person extends Model
         'gender',
         'born_date'
     ];
+
+    public function backgrounds()
+    {
+        return $this->hasMany('App\Models\Background');
+    }
+
+    public function work_experiences()
+    {
+        return $this->hasMany('App\Models\WorkExperience');
+    }
 }
