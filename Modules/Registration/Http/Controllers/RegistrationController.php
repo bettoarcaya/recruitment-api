@@ -8,7 +8,7 @@ use Illuminate\Routing\Controller;
 use Modules\Registration\Http\Requests\RegistrationRequest;
 use App\Repositories\RegistrationRepository;
 
-class RegistrationController extends Controller
+class RegistrationController extends \App\Http\Controllers\Controller
 {
     protected $RegistrationRepository;
 
@@ -36,10 +36,26 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param RegistrationRequest $request
-     * @return Response
-     */
+     * @OA\Post(
+     *     path="/registration/",
+     *     summary="Registrar un cantidato",
+     *     tags={"Registration"},
+     *     operationId="register",
+     *     description="",
+     *     @OA\RequestBody(
+     *         description="Informacion necesaria del candidato",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Candidato registrado de manera satisfactoria",
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input",
+     *     )
+     * )
+    */
     public function store(RegistrationRequest $request)
     {
 
