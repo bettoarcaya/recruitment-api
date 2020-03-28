@@ -4,10 +4,6 @@ namespace App\Models\Schemas;
 
 /**
  * @OA\Schema(
- *  required={
- *    "time", 
- *    "position",
- *  },
  * @OA\Xml(name="WorkExperience"))
  */
 class WorkExperience

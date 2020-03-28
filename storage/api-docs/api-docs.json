@@ -55,10 +55,6 @@
     "components": {
         "schemas": {
             "Background": {
-                "required": [
-                    "academic_level",
-                    "academic_espec"
-                ],
                 "properties": {
                     "academic_level": {
                         "type": "string",
@@ -110,10 +106,6 @@
                 }
             },
             "WorkExperience": {
-                "required": [
-                    "time",
-                    "position"
-                ],
                 "properties": {
                     "time": {
                         "type": "string",

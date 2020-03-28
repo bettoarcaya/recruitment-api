@@ -4,10 +4,6 @@ namespace App\Models\Schemas;
 
 /**
  * @OA\Schema(
- *  required={
- *    "academic_level", 
- *    "academic_espec",
- *  },
  * @OA\Xml(name="Background"))
  */
 class Background
