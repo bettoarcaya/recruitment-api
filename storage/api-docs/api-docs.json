@@ -1,0 +1,31 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Contadores",
+        "version": "1.0"
+    },
+    "paths": {
+        "/registration": {
+            "post": {
+                "tags": [
+                    "Registration"
+                ],
+                "summary": "Registrar un cantidato",
+                "description": "",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Informacion necesaria del candidato",
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Candidato registrado de manera satisfactoria"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        }
+    }
+}
