@@ -1,11 +1,11 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "API Contadores",
+        "title": "Recruitment API",
         "version": "1.0"
     },
     "paths": {
-        "/registration": {
+        "/registration/": {
             "post": {
                 "tags": [
                     "Registration"
@@ -15,7 +15,31 @@
                 "operationId": "register",
                 "requestBody": {
                     "description": "Informacion necesaria del candidato",
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Person": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/Person"
+                                        }
+                                    },
+                                    "Background": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/Background"
+                                        }
+                                    },
+                                    "Work-experience": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/WorkExperience"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
@@ -24,6 +48,85 @@
                     "405": {
                         "description": "Invalid input"
                     }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Background": {
+                "required": [
+                    "academic_level",
+                    "academic_espec"
+                ],
+                "properties": {
+                    "academic_level": {
+                        "type": "string",
+                        "example": "University"
+                    },
+                    "academic_espec": {
+                        "type": "string",
+                        "example": "Back-end Developer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Background"
+                }
+            },
+            "Person": {
+                "required": [
+                    "firstname",
+                    "lastname",
+                    "email",
+                    "gender",
+                    "born_date"
+                ],
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "example": "Jhon"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "Jhondoe@mail.com"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "example": "gender"
+                    },
+                    "born_date": {
+                        "type": "string",
+                        "example": "DD/MM/YYYY"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Person"
+                }
+            },
+            "WorkExperience": {
+                "required": [
+                    "time",
+                    "position"
+                ],
+                "properties": {
+                    "time": {
+                        "type": "string",
+                        "example": "5 Years"
+                    },
+                    "position": {
+                        "type": "string",
+                        "example": "Backend lead developer"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "WorkExperience"
                 }
             }
         }

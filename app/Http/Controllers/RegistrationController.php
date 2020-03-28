@@ -38,7 +38,7 @@ class RegistrationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/registration",
+     *     path="/registration/",
      *     summary="Registrar un cantidato",
      *     tags={"Registration"},
      *     operationId="register",
@@ -46,6 +46,20 @@ class RegistrationController extends Controller
      *     @OA\RequestBody(
      *         description="Informacion necesaria del candidato",
      *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(
+     *                 property="Person",
+     *                 @OA\Items(ref="#/components/schemas/Person")
+     *            ),
+     *            @OA\Property(
+     *                 property="Background",
+     *                 @OA\Items(ref="#/components/schemas/Background")
+     *            ),
+     *            @OA\Property(
+     *                 property="Work-experience",
+     *                 @OA\Items(ref="#/components/schemas/WorkExperience")
+     *            ) 
+     *         ),     
      *     ),
      *     @OA\Response(
      *         response=200,

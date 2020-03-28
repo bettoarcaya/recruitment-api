@@ -8,7 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
 /**
-* @OA\Info(title="API Contadores", version="1.0")
+* @OA\Info(title="Recruitment API", version="1.0")
 */
 class Controller extends BaseController
 {
