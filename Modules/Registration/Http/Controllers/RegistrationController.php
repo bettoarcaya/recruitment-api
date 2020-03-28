@@ -17,19 +17,13 @@ class RegistrationController extends \App\Http\Controllers\Controller
         $this->RegistrationRepository = $registration_repository;
     }
 
-    /**
-     * Display a listing of the resource.
-     * @return Response
-     */
+    
     public function index()
     {
         return view('registration::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
+    
     public function create()
     {
         return view('registration::create');
@@ -37,7 +31,7 @@ class RegistrationController extends \App\Http\Controllers\Controller
 
     /**
      * @OA\Post(
-     *     path="/registration/",
+     *     path="/registration",
      *     summary="Registrar un cantidato",
      *     tags={"Registration"},
      *     operationId="register",

@@ -9,8 +9,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 /**
 * @OA\Info(title="API Contadores", version="1.0")
-*
-* @OA\Server(url="")
 */
 class Controller extends BaseController
 {
