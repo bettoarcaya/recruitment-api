@@ -23,9 +23,11 @@ class RegistrationController extends Controller
      */
     public function index()
     {
+        $response = $this->RegistrationRepository->getAll();
+
         return response()->json([
             'message' => 'Candidate list!',
-            'data'    => []
+            'data'    => $response
         ], 200);
     }
 
