@@ -11,7 +11,7 @@ class JobController extends Controller
     {
 
         return response()->json([
-            'message' => 'Candidate list to this Job',
+            'message' => 'Successful job registration',
             'data'    => []
         ], 200);
     }
