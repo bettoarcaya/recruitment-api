@@ -6,6 +6,6 @@ class RegistrationRepository
 {
 	public function add( Array $data )
 	{
-		
+		dd($data);
 	}
 }

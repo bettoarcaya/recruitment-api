@@ -15,10 +15,11 @@
     return view('welcome');
 });*/
 
-Route::prefix('registration')->group(function() {
-    //Route::get('/', 'RegistrationController@index');
-    //Route::post('/', 'RegistrationController@store');
-    Route::apiResources([
+Route::prefix('candidate')->group(function() {
+    Route::get('registration', 'RegistrationController@index');
+    Route::post('regis', 'RegistrationController@store');
+    //Route::post('regis', 'RegistrationController@testMethod');
+    /*Route::apiResources([
         '/' => 'RegistrationController'
-    ]);
+    ]);*/
 });

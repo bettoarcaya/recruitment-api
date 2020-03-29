@@ -11,7 +11,7 @@ class RegistrationController extends Controller
 
     protected $RegistrationRepository;
 
-    public function __constrctor( RegistrationRepository $registration_repository )
+    public function __construct( RegistrationRepository $registration_repository )
     {   
         $this->RegistrationRepository = $registration_repository;
     }
@@ -23,7 +23,10 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'message' => 'Candidate list!',
+            'data'    => []
+        ], 200);
     }
 
     /**
@@ -38,7 +41,7 @@ class RegistrationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/registration/",
+     *     path="/candidate/registration/",
      *     summary="Registrar un cantidato",
      *     tags={"Registration"},
      *     operationId="register",
@@ -73,7 +76,6 @@ class RegistrationController extends Controller
     */
     public function store(RegistrationRequest $request)
     {
-
         $response = $this->RegistrationRepository->add($request->all());
 
         return response()->json([
