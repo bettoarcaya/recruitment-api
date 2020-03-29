@@ -41,7 +41,7 @@ class RegistrationController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/candidate/registration/",
+     *     path="/registration",
      *     summary="Registrar un cantidato",
      *     tags={"Registration"},
      *     operationId="register",

@@ -41,7 +41,7 @@ class Person
     private $gender;
 
     /**
-     * @OA\Property(example="DD/MM/YYYY")
+     * @OA\Property(example="YYYY-MM-DD")
      * @var string
      */
     private $born_date;

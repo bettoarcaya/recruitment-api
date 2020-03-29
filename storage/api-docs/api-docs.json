@@ -5,7 +5,7 @@
         "version": "1.0"
     },
     "paths": {
-        "/candidate/registration/": {
+        "/registration": {
             "post": {
                 "tags": [
                     "Registration"
@@ -97,7 +97,7 @@
                     },
                     "born_date": {
                         "type": "string",
-                        "example": "DD/MM/YYYY"
+                        "example": "YYYY-MM-DD"
                     }
                 },
                 "type": "object",
