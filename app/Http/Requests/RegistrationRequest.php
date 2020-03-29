@@ -14,10 +14,10 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' => 'required',
-            'lastname' => 'required',
-            'email' => 'required|unique:people',
-            'gender' => 'required',
+            'Person.*.firstname' => 'required',
+            'Person.*.lastname' => 'required',
+            'Person.*.email' => 'required|unique:people',
+            'Person.*.gender' => 'required',
         ];
     }
 
@@ -34,11 +34,11 @@ class RegistrationRequest extends FormRequest
     public function messages()
     {
         return [
-            'firstname.required' => 'Este campo es requerido',
-            'lastname.required' => 'Este campo es requerido',
-            'email.required' => 'Este campo es requerido',
-            'email.unique' => 'Ya existe un usuario con este correo',
-            'gender.required' => 'Este campo es requerido',
+            'Person.*.firstname.required' => 'Este campo es requerido',
+            'Person.*.lastname.required' => 'Este campo es requerido',
+            'Person.*.email.required' => 'Este campo es requerido',
+            'Person.*.email.unique' => 'Ya existe un usuario con este correo',
+            'Person.*.gender.required' => 'Este campo es requerido',
         ];
     }
 }
