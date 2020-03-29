@@ -10,10 +10,16 @@ class WorkExperience
 {
 
     /**
-     * @OA\Property(example="5 Years")
-     * @var string
+     * @OA\Property(example="YYYY-MM-DD")
+     * @var date
      */
-    private $time;
+    private $start;
+
+    /**
+     * @OA\Property(example="YYYY-MM-DD")
+     * @var date
+     */
+    private $end;
 
     /**
      * @OA\Property(example="Backend lead developer")

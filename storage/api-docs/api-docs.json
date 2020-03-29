@@ -107,9 +107,15 @@
             },
             "WorkExperience": {
                 "properties": {
-                    "time": {
+                    "start": {
                         "type": "string",
-                        "example": "5 Years"
+                        "format": "date",
+                        "example": "YYYY-MM-DD"
+                    },
+                    "end": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "YYYY-MM-DD"
                     },
                     "position": {
                         "type": "string",

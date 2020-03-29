@@ -9,7 +9,8 @@ class WorkExperience extends Model
     protected $table = 'work_experiences';
     protected $fillable = [
         'person_id',
-        'time',
+        'start',
+        'end',
         'position'
     ];
 }
