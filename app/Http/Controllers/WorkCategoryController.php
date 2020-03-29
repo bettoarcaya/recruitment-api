@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\WorkCategory;
+use App\Repositories\CategoryRepository;
+use Illuminate\Http\JsonResponse;
 
 class WorkCategoryController extends Controller
 {
@@ -30,9 +32,8 @@ class WorkCategoryController extends Controller
     *     )
     * )
     */
-    public function index()
+    public function index() : JsonResponse
     {
-
         $response = $this->categoryRepository->getAll();
 
         return response()->json([

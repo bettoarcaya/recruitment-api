@@ -65,6 +65,23 @@
                     }
                 }
             }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List of all the work categories",
+                "operationId": "App\\Http\\Controllers\\WorkCategoryController::index",
+                "responses": {
+                    "200": {
+                        "description": "All the avilable categories."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            }
         }
     },
     "components": {

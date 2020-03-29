@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\RegistrationRepository;
 use App\Http\Requests\RegistrationRequest;
+use Illuminate\Http\JsonResponse;
 
 class RegistrationController extends Controller
 {
@@ -31,7 +32,7 @@ class RegistrationController extends Controller
     *     )
     * )
     */
-    public function index()
+    public function index() : JsonResponse
     {
         $response = $this->RegistrationRepository->getAll();
 
@@ -86,7 +87,7 @@ class RegistrationController extends Controller
      *     )
      * )
     */
-    public function store(RegistrationRequest $request)
+    public function store(RegistrationRequest $request) : JsonResponse
     {
         $response = $this->RegistrationRepository->add($request->all());
 
