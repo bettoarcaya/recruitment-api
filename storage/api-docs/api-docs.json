@@ -6,15 +6,30 @@
     },
     "paths": {
         "/registration": {
+            "get": {
+                "tags": [
+                    "Registration"
+                ],
+                "summary": "List of all the registered candidates",
+                "operationId": "App\\Http\\Controllers\\RegistrationController::index",
+                "responses": {
+                    "200": {
+                        "description": "List all candidates."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Registration"
                 ],
-                "summary": "Registrar un cantidato",
+                "summary": "Candidate registration",
                 "description": "",
                 "operationId": "register",
                 "requestBody": {
-                    "description": "Informacion necesaria del candidato",
+                    "description": "Candidate information",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -43,7 +58,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Candidato registrado de manera satisfactoria"
+                        "description": "Candidate registered"
                     },
                     "405": {
                         "description": "Invalid input"

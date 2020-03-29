@@ -17,16 +17,26 @@ class RegistrationController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Get(
+    *     path="/registration",
+    *     summary="List of all the registered candidates",
+    *     tags={"Registration"},
+    *     @OA\Response(
+    *       response=200,
+    *       description="List all candidates."
+    *     ),
+    *     @OA\Response(
+    *         response="default",
+    *         description="something is bad."
+    *     )
+    * )
+    */
     public function index()
     {
         $response = $this->RegistrationRepository->getAll();
 
         return response()->json([
-            'message' => 'Candidate list!',
+            'message' => 'Candidate list',
             'data'    => $response
         ], 200);
     }
@@ -44,12 +54,12 @@ class RegistrationController extends Controller
     /**
      * @OA\Post(
      *     path="/registration",
-     *     summary="Registrar un cantidato",
+     *     summary="Candidate registration",
      *     tags={"Registration"},
      *     operationId="register",
      *     description="",
      *     @OA\RequestBody(
-     *         description="Informacion necesaria del candidato",
+     *         description="Candidate information",
      *         required=true,
      *         @OA\JsonContent(
      *             @OA\Property(
@@ -68,7 +78,7 @@ class RegistrationController extends Controller
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Candidato registrado de manera satisfactoria",
+     *         description="Candidate registered",
      *     ),
      *     @OA\Response(
      *         response=405,
@@ -81,7 +91,7 @@ class RegistrationController extends Controller
         $response = $this->RegistrationRepository->add($request->all());
 
         return response()->json([
-            'message' => 'Registro exitoso',
+            'message' => 'Successful registration',
             'data'    => $response
         ], 200);
     }
