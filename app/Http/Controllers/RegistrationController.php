@@ -74,7 +74,7 @@ class RegistrationController extends Controller
      *     )
      * )
     */
-    public function store(RegistrationRequest $request)
+    public function store(Request $request)
     {
         $response = $this->RegistrationRepository->add($request->all());
 
