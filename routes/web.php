@@ -29,3 +29,7 @@ Route::group(['prefix' => 'categories'], function () {
         '/' => 'WorkCategoryController'
     ]);
 });
+
+Route::group(['prefix' => 'Jobs'], function () {
+    Route::post('/', 'JobController@store');    
+});
