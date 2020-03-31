@@ -30,6 +30,6 @@ Route::group(['prefix' => 'categories'], function () {
     ]);
 });
 
-Route::group(['prefix' => 'Jobs'], function () {
+Route::group(['prefix' => 'jobs'], function () {
     Route::post('/', 'JobController@store');    
 });

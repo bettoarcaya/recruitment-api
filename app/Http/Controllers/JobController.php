@@ -17,7 +17,7 @@ class JobController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/job",
+     *     path="/jobs",
      *     summary="Job position details",
      *     tags={"Job"},
      *     operationId="store",
@@ -44,7 +44,7 @@ class JobController extends Controller
     */
     public function store(Request $request) : JsonResponse
     {
-        $response = $this->jobRepository->add($request->all());
+        $response = $this->jobRepository->add($request->Job);
 
         return response()->json([
             'message' => 'Successful job registration',

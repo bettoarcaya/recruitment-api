@@ -5,6 +5,42 @@
         "version": "1.0"
     },
     "paths": {
+        "/jobs": {
+            "post": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Job position details",
+                "description": "",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Job information",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Job": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/Job"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Job registered"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
         "/registration": {
             "get": {
                 "tags": [
@@ -100,6 +136,30 @@
                 "type": "object",
                 "xml": {
                     "name": "Background"
+                }
+            },
+            "Job": {
+                "properties": {
+                    "company_name": {
+                        "type": "string",
+                        "example": "Microsoft"
+                    },
+                    "catg_position_id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "experience_years": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "position_type": {
+                        "type": "string",
+                        "example": "remote"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Job"
                 }
             },
             "Person": {
