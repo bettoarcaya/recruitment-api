@@ -4,12 +4,14 @@ namespace App\RecruitmentCore\MatchEngine;
 
 class MatchEngine
 {
-    public function __construct()
+    private $rules;
+    
+    public function __construct(Array $rules)
     {
-
+        $this->rules = $rules;
     }
 
-    public function match( )
+    public function match()
     {
 
     }
