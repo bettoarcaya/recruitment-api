@@ -111,6 +111,7 @@ class JobController extends Controller
     {
         $job = $this->jobRepository->find($job_id);
         $candidates = $this->matchEngine->match($job);
+        //$response = $this->matchEngine->engine($candidates);
 
         return response()->json([
             'message' => 'Candidate List for this Job',

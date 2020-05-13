@@ -2,8 +2,10 @@
 
 namespace App\RecruitmentCore\MatchEngine;
 
+use App\Http\Resources\CandidateCollection;
 use App\Models\Job;
 use App\Repositories\RegistrationRepository;
+use Illuminate\Support\Collection;
 
 class MatchEngine
 {
@@ -23,9 +25,12 @@ class MatchEngine
     public function match(Job $job)
     {
         $rules = $this->rules[$job->catg_position_id];
-        $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
+        return $this->RegistrationRepository->getByWorkCatg($rules);
+    }
 
-        return $candidates;
+    public function engine(Collection $profiles) : CandidateCollection
+    {
+        return new CandidateCollection($profiles);
     }
 
 }
