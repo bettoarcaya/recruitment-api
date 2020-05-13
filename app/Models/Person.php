@@ -25,4 +25,12 @@ class Person extends Model
     {
         return $this->hasMany('App\Models\WorkExperience');
     }
+
+    public function scopeWorkCategory($query, $rules)
+    {
+        return $query->whereHas('backgrounds', function($q) use($rules) {
+            $q->whereIn('work_exp_catg', $rules);
+        });
+    }
+
 }

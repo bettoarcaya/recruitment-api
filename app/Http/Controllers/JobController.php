@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobRepository;
+use App\RecruitmentCore\MatchEngine\MatchEngine;
 
 class JobController extends Controller
 {
     protected $jobRepository;
+    protected $matchEngine;
 
-    public function __construct( JobRepository $job_repository )
-    {
+    public function __construct(
+        JobRepository $job_repository,
+        MatchEngine $match_engine
+    ){
         $this->jobRepository = $job_repository;
+        $this->matchEngine = $match_engine;
     }
 
     /**
@@ -105,8 +110,12 @@ class JobController extends Controller
     public function match(string $job_id) : JsonResponse
     {
         $job = $this->jobRepository->find($job_id);
+        $candidates = $this->matchEngine->match($job);
 
-        return response()->json();
+        return response()->json([
+            'message' => 'Candidate List for this Job',
+            'data' => $candidates
+        ]);
     }
 
 }
