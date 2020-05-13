@@ -77,4 +77,36 @@ class JobController extends Controller
         ], 200);
     }
 
+    /**
+     * @OA\Get(
+     *     path="/jobs/match",
+     *     summary="List of all the available professionals to this job",
+     *     tags={"Job"},
+     *     @OA\Parameter(
+     *         name="jobId",
+     *         in="path",
+     *         description="Job ID",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *       response=200,
+     *       description="All the avilable professionals to this job."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="something is bad."
+     *     )
+     * )
+     */
+    public function match(string $job_id) : JsonResponse
+    {
+        $job = $this->jobRepository->find($job_id);
+
+        return response()->json();
+    }
+
 }

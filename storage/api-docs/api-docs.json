@@ -56,6 +56,35 @@
                 }
             }
         },
+        "/jobs/match": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "List of all the available professionals to this job",
+                "operationId": "App\\Http\\Controllers\\JobController::match",
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "Job ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All the avilable professionals to this job."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            }
+        },
         "/registration": {
             "get": {
                 "tags": [

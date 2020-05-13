@@ -15,4 +15,9 @@ class JobRepository
     {
         return Job::all();
     }
+
+    public function find( string $job_id)
+    {
+        return Job::findOrFail($job_id);
+    }
 }
