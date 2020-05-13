@@ -25,12 +25,22 @@ class MatchEngine
     public function match(Job $job)
     {
         $rules = $this->rules[$job->catg_position_id];
-        return $this->RegistrationRepository->getByWorkCatg($rules);
+        $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
+        return $this->evaluate($candidates, $job->catg_position_id);
     }
 
-    public function engine(Collection $profiles) : CandidateCollection
+    public function evaluate($candidates, $catg)
     {
-        return new CandidateCollection($profiles);
+
+        foreach ($candidates as $key => $candidate){
+            if($candidate->work_exp_catg == $catg){
+                $candidates[$key]->merge(['percentage' => 10]);
+            }else{
+                $candidates[$key]->merge(['percentage' => 5]);
+            }
+        }
+
+        return $candidates->get();
     }
 
 }
