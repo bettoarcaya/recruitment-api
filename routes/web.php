@@ -31,5 +31,8 @@ Route::group(['prefix' => 'categories'], function () {
 });
 
 Route::group(['prefix' => 'jobs'], function () {
-    Route::post('/', 'JobController@store');    
+    Route::apiResources([
+        '/' => 'JobController'
+    ]);
+    //Route::post('/', 'JobController@store');
 });

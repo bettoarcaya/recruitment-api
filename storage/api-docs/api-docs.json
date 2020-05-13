@@ -6,6 +6,21 @@
     },
     "paths": {
         "/jobs": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "List of all the available Jobs",
+                "operationId": "App\\Http\\Controllers\\JobController::index",
+                "responses": {
+                    "200": {
+                        "description": "All the avilable Jobs."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Job"
@@ -128,9 +143,9 @@
                         "type": "string",
                         "example": "University"
                     },
-                    "academic_espec": {
+                    "work_exp_catg": {
                         "type": "string",
-                        "example": "Back-end Developer"
+                        "example": "1"
                     }
                 },
                 "type": "object",

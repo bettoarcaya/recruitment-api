@@ -16,9 +16,9 @@ class Background
     private $academic_level;
 
     /**
-     * @OA\Property(example="Back-end Developer")
+     * @OA\Property(example="1")
      * @var string
      */
-    private $academic_espec;
+    private $work_exp_catg;
 
 }

@@ -10,4 +10,9 @@ class JobRepository
     {
         return Job::create($job_data[0]);
     }
+
+    public function all()
+    {
+        return Job::all();
+    }
 }

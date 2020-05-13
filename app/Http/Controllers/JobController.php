@@ -11,8 +11,33 @@ class JobController extends Controller
     protected $jobRepository;
 
     public function __construct( JobRepository $job_repository )
-    {   
+    {
         $this->jobRepository = $job_repository;
+    }
+
+    /**
+     * @OA\Get(
+     *     path="/jobs",
+     *     summary="List of all the available Jobs",
+     *     tags={"Job"},
+     *     @OA\Response(
+     *       response=200,
+     *       description="All the avilable Jobs."
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="something is bad."
+     *     )
+     * )
+     */
+    public function index()
+    {
+        $response = $this->jobRepository->all();
+
+        return response()->json([
+            'message' => 'All the jobs',
+            'data' => $response
+        ]);
     }
 
     /**
@@ -29,8 +54,8 @@ class JobController extends Controller
      *             @OA\Property(
      *                 property="Job",
      *                 @OA\Items(ref="#/components/schemas/Job")
-     *            ) 
-     *         ),     
+     *            )
+     *         ),
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -51,4 +76,5 @@ class JobController extends Controller
             'data'    => $response
         ], 200);
     }
+
 }
