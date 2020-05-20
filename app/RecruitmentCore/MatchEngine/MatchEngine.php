@@ -25,30 +25,17 @@ class MatchEngine
 
     public function match(Job $job)
     {
+        session()->put('job', $job);
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
-        //return $this->evaluate($candidates, $job->catg_position_id);
+        
         return new PersonCollection($candidates->paginate(10));
     }
 
-    public function evaluate($candidates, $catg)
+    public function evaluate( $candidate )
     {
-        $result = [];
-        foreach ($candidates->get() as $key => $candidate){
-            $result[] = $candidate->toArray();
-            if($candidate->work_exp_catg == $catg){
-                $result[$key]['percentage'] = 10;
-            }else{
-                $result[$key]['percentage'] = 5;
-            }
-        }
-
-        return $result;
-    }
-
-    public function evaluateCandidate( Person $candidate )
-    {
-
+        $job = session()->get('job');
+        return ( $candidate->work_exp_catg == $job->catg_position_id ) ? 100 : 50;
     }
 
 }

@@ -8,6 +8,16 @@ use App\Models\Person;
 
 class PersonCollection extends ResourceCollection
 {
+    protected $engine;
+    protected $person;
+
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+        $this->engine = new MatchEngine();
+        $this->person = new Person();
+    }
+
     /**
      * Transform the resource collection into an array.
      *
@@ -18,15 +28,21 @@ class PersonCollection extends ResourceCollection
     {
         return [
             'candidates' => $this->collection->transform(function($row) {
-              $person = new Person();
-              $engine = new MatchEngine();
               return [
-                  'personal_data' => $person->fill($row->toArray()),
+                  'percentage' => $this->engine->evaluate($row),
+                  'personal_data' => $this->person->fill($row->toArray()),
                   'backgrounds' => $row->backgrounds,
                   'work_experiences' => $row->work_experiences,
-                  'percentage' => $engine->evaluate()
               ];
-            })
+            }),
+            'links' => [
+                'next' => $this->resource->nextPageUrl(),
+                'prev' => $this->resource->previousPageUrl()
+            ],
+            'meta' => [
+                'total' => $this->resource->total(),
+                'current_page' => $this->resource->currentPage()
+            ],
         ];
         //return parent::toArray($request);
     }
