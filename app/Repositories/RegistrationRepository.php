@@ -25,6 +25,5 @@ class RegistrationRepository
     {
         return Person::with(['backgrounds', 'work_experiences'])
             ->whereIn('work_exp_catg', $rules);
-
     }
 }

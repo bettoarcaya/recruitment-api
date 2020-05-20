@@ -13,7 +13,8 @@ class Person extends Model
         'lastname',
         'email',
         'gender',
-        'born_date'
+        'born_date',
+        'work_exp_catg'
     ];
 
     public function backgrounds()

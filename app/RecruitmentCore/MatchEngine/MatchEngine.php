@@ -2,8 +2,9 @@
 
 namespace App\RecruitmentCore\MatchEngine;
 
-use App\Http\Resources\CandidateCollection;
+use App\Http\Resources\PersonCollection;
 use App\Models\Job;
+use App\Models\Person;
 use App\Repositories\RegistrationRepository;
 use Illuminate\Support\Collection;
 
@@ -12,9 +13,9 @@ class MatchEngine
     private $rules;
     protected $RegistrationRepository;
 
-    public function __construct( RegistrationRepository $registration_repository )
+    public function __construct()
     {
-        $this->RegistrationRepository = $registration_repository;
+        $this->RegistrationRepository = new RegistrationRepository;
         $this->rules = [
             '1' => ['1' , '3'],
             '2' => ['2' , '3'],
@@ -26,21 +27,28 @@ class MatchEngine
     {
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
-        return $this->evaluate($candidates, $job->catg_position_id);
+        //return $this->evaluate($candidates, $job->catg_position_id);
+        return new PersonCollection($candidates->paginate(10));
     }
 
     public function evaluate($candidates, $catg)
     {
-
-        foreach ($candidates as $key => $candidate){
+        $result = [];
+        foreach ($candidates->get() as $key => $candidate){
+            $result[] = $candidate->toArray();
             if($candidate->work_exp_catg == $catg){
-                $candidates[$key]->merge(['percentage' => 10]);
+                $result[$key]['percentage'] = 10;
             }else{
-                $candidates[$key]->merge(['percentage' => 5]);
+                $result[$key]['percentage'] = 5;
             }
         }
 
-        return $candidates->get();
+        return $result;
+    }
+
+    public function evaluateCandidate( Person $candidate )
+    {
+
     }
 
 }
