@@ -24,6 +24,7 @@ class RegistrationRepository
 	public function getByWorkCatg( array $rules )
     {
         return Person::with(['backgrounds', 'work_experiences'])
-            ->whereIn('work_exp_catg', $rules);
+            ->whereIn('work_exp_catg', $rules)
+            ->experience(5);
     }
 }

@@ -34,4 +34,11 @@ class Person extends Model
         });
     }
 
+    public function scopeExperience($query, $years)
+    {
+        return $query->whereHas('work_experiences', function($q) use ($years){
+            $q->where('time' > $years);
+        });
+    }
+
 }
