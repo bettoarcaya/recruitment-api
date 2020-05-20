@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\Person;
 use App\Repositories\RegistrationRepository;
 use Illuminate\Support\Collection;
+use phpDocumentor\Reflection\Types\Integer;
 
 class MatchEngine
 {
@@ -23,16 +24,16 @@ class MatchEngine
         ];
     }
 
-    public function match(Job $job)
+    public function match(Job $job) : PersonCollection
     {
         session()->put('job', $job);
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
-        
+
         return new PersonCollection($candidates->paginate(10));
     }
 
-    public function evaluate( $candidate )
+    public function evaluate( Person $candidate ) : Integer
     {
         $job = session()->get('job');
         return ( $candidate->work_exp_catg == $job->catg_position_id ) ? 100 : 50;
