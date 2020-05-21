@@ -33,7 +33,7 @@ class MatchEngine
         return new PersonCollection($candidates->paginate(10));
     }
 
-    public function evaluate( Person $candidate ) : Integer
+    public function evaluate( Person $candidate ) : int
     {
         $job = session()->get('job');
         return ( $candidate->work_exp_catg == $job->catg_position_id ) ? 100 : 50;

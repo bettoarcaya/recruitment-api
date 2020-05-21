@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class Person extends Model
 {
@@ -34,10 +35,12 @@ class Person extends Model
         });
     }
 
-    public function scopeExperience($query, $years)
+    public function scopeWhereExperience($query)
     {
+        $years = session()->get('job')->experience_years;
+
         return $query->whereHas('work_experiences', function($q) use ($years){
-            $q->where('time' > $years);
+            $q->where('start', '2010-10-10');
         });
     }
 
