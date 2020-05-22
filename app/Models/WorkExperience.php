@@ -12,14 +12,7 @@ class WorkExperience extends Model
         'person_id',
         'start',
         'end',
-        'position'
+        'position',
+        'time'
     ];
-
-    public function time()
-    {
-        $start = Carbon::parse( $this->start );
-        $end = Carbon::parse( $this->end );
-
-        return $end - $start;
-    }
 }

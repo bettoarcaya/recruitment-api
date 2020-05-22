@@ -42,8 +42,8 @@ class Person extends Model
 
         return $query->whereHas('work_experiences', function($q) use ($years){
             $q->where(function ($query) {
-                $query->sum('time');
-            }, '>=', $years);
+                  $query->sum('time');
+                }, '>=', $years);
         });
     }
 

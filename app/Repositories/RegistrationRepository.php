@@ -21,7 +21,7 @@ class RegistrationRepository
 		return Person::with(['backgrounds', 'work_experiences'])->get();
 	}
 
-	public function getByWorkCatg( array $rules )
+	public function getByWorkCatg( array $rules ) : Person
     {
         return Person::with(['backgrounds', 'work_experiences'])
                      ->whereIn('work_exp_catg', $rules)
