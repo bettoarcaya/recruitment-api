@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -40,7 +41,9 @@ class Person extends Model
         $years = session()->get('job')->experience_years;
 
         return $query->whereHas('work_experiences', function($q) use ($years){
-            $q->where('start', '2010-10-10');
+            $q->where(function ($query) {
+                $query->sum('start');
+            }, '>=', $years);
         });
     }
 
