@@ -15,7 +15,6 @@ class PersonCollection extends ResourceCollection
     {
         parent::__construct($resource);
         $this->engine = new MatchEngine();
-        $this->person = new Person();
     }
 
     /**
@@ -28,9 +27,10 @@ class PersonCollection extends ResourceCollection
     {
         return [
             'candidates' => $this->collection->transform(function($row) {
+                $person = new Person();
               return [
                   'percentage' => $this->engine->evaluate($row),
-                  'personal_data' => $this->person->fill($row->toArray()),
+                  'personal_data' => $person->fill($row->toArray()),
                   'backgrounds' => $row->backgrounds,
                   'work_experiences' => $row->work_experiences,
               ];
