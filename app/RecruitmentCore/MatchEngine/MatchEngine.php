@@ -6,8 +6,6 @@ use App\Http\Resources\PersonCollection;
 use App\Models\Job;
 use App\Models\Person;
 use App\Repositories\RegistrationRepository;
-use Illuminate\Support\Collection;
-use phpDocumentor\Reflection\Types\Integer;
 
 class MatchEngine
 {
@@ -36,7 +34,17 @@ class MatchEngine
     public function evaluate( Person $candidate ) : int
     {
         $job = session()->get('job');
-        return ( $candidate->work_exp_catg == $job->catg_position_id ) ? 100 : 50;
+        $result = 0;
+        $sum = 0;
+
+        foreach ($candidate->work_experiences as $work_experience){
+            $sum += $work_experience->time;
+        }
+
+        $result += ( $candidate->work_exp_catg == $job->catg_position_id ) ? 50 : 25;
+        $result += ( $sum / $job->experience_years ) * 10;
+
+        return ($result > 100) ? 100 : $result;
     }
 
 }

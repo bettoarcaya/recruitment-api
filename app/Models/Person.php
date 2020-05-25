@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 
@@ -40,13 +39,11 @@ class Person extends Model
     {
         $years = session()->get('job')->experience_years;
         $available = [];
-        $people = $query->get();
-        
-        foreach ($people as $person){
-            $work_exps = $person->work_experiences;
+
+        foreach ($query->get() as $person){
             $sum = 0;
 
-            foreach ($work_exps as $work_exp){
+            foreach ($person->work_experiences as $work_exp){
                 $sum += $work_exp->time;
             }
 
