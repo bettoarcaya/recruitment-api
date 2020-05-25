@@ -40,6 +40,8 @@ class Person extends Model
         $years = session()->get('job')->experience_years;
         $available = [];
 
+        //WORKAROUND this logic should be in the sql query but i've had some troubles to implementing it
+        // ---------------------------------------------------------------------------------------------
         foreach ($query->get() as $person){
             $sum = 0;
 
@@ -51,6 +53,7 @@ class Person extends Model
                 $available[] = $person->id;
             }
         }
+        // -----------------------------------------------------------------------------------------------
 
         return $query->whereHas('work_experiences', function($q) use ($available){
             $q->whereIn('person_id', $available);
