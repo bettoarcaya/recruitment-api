@@ -30,6 +30,8 @@ class MatchEngine
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
 
+        dd($candidates->get());
+
         return new PersonCollection($candidates->paginate(10));
     }
 
