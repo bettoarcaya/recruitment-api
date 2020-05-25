@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Person;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class RegistrationRepository
 {
@@ -24,7 +25,8 @@ class RegistrationRepository
 	public function getByWorkCatg( array $rules )
     {
         return Person::with(['backgrounds', 'work_experiences'])
-                     ->whereIn('work_exp_catg', $rules)
-                     ->whereExperience();
+            ->whereIn('work_exp_catg', $rules)
+            ->whereExperience();
+
     }
 }

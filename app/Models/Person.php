@@ -39,11 +39,24 @@ class Person extends Model
     public function scopeWhereExperience($query)
     {
         $years = session()->get('job')->experience_years;
+        $available = [];
+        $people = $query->get();
+        
+        foreach ($people as $person){
+            $work_exps = $person->work_experiences;
+            $sum = 0;
 
-        return $query->whereHas('work_experiences', function($q) use ($years){
-            $q->where(function ($query) {
-                  $query->sum('time');
-                }, '>=', $years);
+            foreach ($work_exps as $work_exp){
+                $sum += $work_exp->time;
+            }
+
+            if( $sum >= $years ){
+                $available[] = $person->id;
+            }
+        }
+
+        return $query->whereHas('work_experiences', function($q) use ($available){
+            $q->whereIn('person_id', $available);
         });
     }
 
