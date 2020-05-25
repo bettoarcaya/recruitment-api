@@ -40,7 +40,7 @@ class Person extends Model
         $years = session()->get('job')->experience_years;
         $available = [];
 
-        //WORKAROUND this logic should be in the sql query but i've had some troubles to implementing it
+        //WORKARROUND this logic should be in the sql query but i've had some troubles to implementing it
         // ---------------------------------------------------------------------------------------------
         foreach ($query->get() as $person){
             $sum = 0;
