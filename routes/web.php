@@ -11,12 +11,28 @@
 |
 */
 
-/*Route::get('/', function () {
+//base route.
+Route::get('/', function () {
     return view('welcome');
-});*/
+});
 
+// test way, will be change in the future. or not...
 Route::prefix('registration')->group(function() {
     Route::apiResources([
         '/' => 'RegistrationController'
     ]);
+});
+
+//better way to handled routes middleware. I guess....
+Route::group(['prefix' => 'categories'], function () {
+    Route::apiResources([
+        '/' => 'WorkCategoryController'
+    ]);
+});
+
+Route::group(['prefix' => 'jobs'], function () {
+    Route::apiResources([
+        '/' => 'JobController'
+    ]);
+    Route::get('match/{job_id}', 'JobController@match');
 });

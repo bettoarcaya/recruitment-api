@@ -5,6 +5,86 @@
         "version": "1.0"
     },
     "paths": {
+        "/jobs": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "List of all the available Jobs",
+                "operationId": "App\\Http\\Controllers\\JobController::index",
+                "responses": {
+                    "200": {
+                        "description": "All the avilable Jobs."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "Job position details",
+                "description": "",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Job information",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Job": {
+                                        "items": {
+                                            "$ref": "#/components/schemas/Job"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Job registered"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
+        "/jobs/match": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "List of all the available professionals to this job",
+                "operationId": "App\\Http\\Controllers\\JobController::match",
+                "parameters": [
+                    {
+                        "name": "jobId",
+                        "in": "path",
+                        "description": "Job ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All the avilable professionals to this job."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            }
+        },
         "/registration": {
             "get": {
                 "tags": [
@@ -65,6 +145,23 @@
                     }
                 }
             }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "Categories"
+                ],
+                "summary": "List of all the work categories",
+                "operationId": "App\\Http\\Controllers\\WorkCategoryController::index",
+                "responses": {
+                    "200": {
+                        "description": "All the avilable categories."
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -75,14 +172,38 @@
                         "type": "string",
                         "example": "University"
                     },
-                    "academic_espec": {
+                    "work_exp_catg": {
                         "type": "string",
-                        "example": "Back-end Developer"
+                        "example": "1"
                     }
                 },
                 "type": "object",
                 "xml": {
                     "name": "Background"
+                }
+            },
+            "Job": {
+                "properties": {
+                    "company_name": {
+                        "type": "string",
+                        "example": "Microsoft"
+                    },
+                    "catg_position_id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "experience_years": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "position_type": {
+                        "type": "string",
+                        "example": "remote"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Job"
                 }
             },
             "Person": {

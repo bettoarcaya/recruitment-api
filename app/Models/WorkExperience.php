@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class WorkExperience extends Model
@@ -11,6 +12,7 @@ class WorkExperience extends Model
         'person_id',
         'start',
         'end',
-        'position'
+        'position',
+        'time'
     ];
 }

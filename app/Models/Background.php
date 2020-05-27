@@ -10,6 +10,7 @@ class Background extends Model
     protected $fillable = [
         'person_id',
         'academic_level',
-        'academic_espec'
+        'work_exp_catg'
     ];
+
 }
