@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Job;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class JobRepository
 {
@@ -12,9 +13,9 @@ class JobRepository
         return Job::create($job_data);
     }
 
-    public function all() : Collection
+    public function all() : LengthAwarePaginator
     {
-        return Job::all();
+        return Job::paginate(10);
     }
 
     public function find( string $job_id) : Job
