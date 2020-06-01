@@ -199,6 +199,14 @@
                     "position_type": {
                         "type": "string",
                         "example": "remote"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "job description"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Back-end lead dev"
                     }
                 },
                 "type": "object",

@@ -33,4 +33,16 @@ class Job
      */
     private $position_type;
 
+    /**
+     * @OA\Property(example="job description")
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @OA\Property(example="Back-end lead dev")
+     * @var string
+     */
+    private $title;
+
 }

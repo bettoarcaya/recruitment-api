@@ -77,7 +77,7 @@ class JobController extends Controller
         $response = $this->jobRepository->add($request->Job);
 
         return response()->json([
-            'message' => 'Successful job registration',
+            'message' => 'Successfully job registration',
             'data'    => $response
         ], 200);
     }

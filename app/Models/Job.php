@@ -11,7 +11,9 @@ class Job extends Model
         'company_name',
         'catg_position_id',
         'experience_years',
-        'position_type'
+        'position_type',
+        'description',
+        'title'
     ];
 
     public function catg_position()
