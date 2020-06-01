@@ -55,12 +55,7 @@ class JobController extends Controller
      *     @OA\RequestBody(
      *         description="Job information",
      *         required=true,
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="Job",
-     *                 @OA\Items(ref="#/components/schemas/Job")
-     *            )
-     *         ),
+     *         @OA\JsonContent(ref="#/components/schemas/Job")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -74,7 +69,7 @@ class JobController extends Controller
     */
     public function store(Request $request) : JsonResponse
     {
-        $response = $this->jobRepository->add($request->Job);
+        $response = $this->jobRepository->add($request->all());
 
         return response()->json([
             'message' => 'Successfully job registration',

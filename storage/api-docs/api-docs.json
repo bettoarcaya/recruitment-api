@@ -34,14 +34,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "properties": {
-                                    "Job": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Job"
-                                        }
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/Job"
                             }
                         }
                     }

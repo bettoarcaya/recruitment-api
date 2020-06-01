@@ -9,7 +9,7 @@ class JobRepository
 {
     public function add( Array $job_data ) : Job
     {
-        return Job::create($job_data[0]);
+        return Job::create($job_data);
     }
 
     public function all() : Collection
