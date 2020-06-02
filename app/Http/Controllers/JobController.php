@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobRepository;
@@ -67,7 +68,7 @@ class JobController extends Controller
      *     )
      * )
     */
-    public function store(Request $request) : JsonResponse
+    public function store(JobRequest $request) : JsonResponse
     {
         $response = $this->jobRepository->add($request->all());
 
