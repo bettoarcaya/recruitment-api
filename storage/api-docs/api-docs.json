@@ -49,7 +49,7 @@
                 }
             }
         },
-        "/jobs/match": {
+        "/jobs/match/{jobId}": {
             "get": {
                 "tags": [
                     "Job"
@@ -235,6 +235,10 @@
                     "born_date": {
                         "type": "string",
                         "example": "YYYY-MM-DD"
+                    },
+                    "work_exp_catg": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object",
@@ -257,6 +261,10 @@
                     "position": {
                         "type": "string",
                         "example": "Backend lead developer"
+                    },
+                    "time": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object",

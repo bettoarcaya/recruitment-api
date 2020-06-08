@@ -5,7 +5,7 @@ namespace App\Models\Schemas;
 /**
  * @OA\Schema(
  *  required={
- *    "firstname", 
+ *    "firstname",
  *    "lastname",
  *    "email",
  *    "gender",
@@ -45,5 +45,11 @@ class Person
      * @var string
      */
     private $born_date;
+
+    /**
+     * @OA\Property(example="1")
+     * @var string
+     */
+    private $work_exp_catg;
 
 }

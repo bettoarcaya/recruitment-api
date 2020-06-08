@@ -80,7 +80,7 @@ class JobController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/jobs/match",
+     *     path="/jobs/match/{jobId}",
      *     summary="List of all the available professionals to this job",
      *     tags={"Job"},
      *     @OA\Parameter(
