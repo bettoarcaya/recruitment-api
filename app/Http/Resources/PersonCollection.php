@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\RecruitmentCore\MatchEngine\MatchEngine;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Models\Person;
 
@@ -36,7 +37,8 @@ class PersonCollection extends ResourceCollection
                       'email' => $row->email,
                       'gender' => $row->gender,
                       'born_date' => $row->born_date,
-                      'work_exp_catg ' => $row->work_catg()
+                      'work_exp_catg' => $row->work_catg(),
+                      'age' => Carbon::parse($row->born_date)->age
                   ], //$person->fill($row->toArray()),
                   'backgrounds' => $row->backgrounds,
                   'work_experiences' => $row->work_experiences,
