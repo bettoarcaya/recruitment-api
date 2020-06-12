@@ -108,17 +108,15 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "Person": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Person"
-                                        }
+                                    "person": {
+                                        "$ref": "#/components/schemas/Person"
                                     },
-                                    "Background": {
+                                    "background": {
                                         "items": {
                                             "$ref": "#/components/schemas/Background"
                                         }
                                     },
-                                    "Work-experience": {
+                                    "work_experience": {
                                         "items": {
                                             "$ref": "#/components/schemas/WorkExperience"
                                         }
@@ -161,13 +159,13 @@
         "schemas": {
             "Background": {
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Standford"
+                    },
                     "academic_level": {
                         "type": "string",
                         "example": "University"
-                    },
-                    "work_exp_catg": {
-                        "type": "string",
-                        "example": "1"
                     }
                 },
                 "type": "object",

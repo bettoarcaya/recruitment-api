@@ -64,15 +64,15 @@ class RegistrationController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             @OA\Property(
-     *                 property="Person",
-     *                 @OA\Items(ref="#/components/schemas/Person")
+     *                 property="person",
+     *                 ref="#/components/schemas/Person"
      *            ),
      *            @OA\Property(
-     *                 property="Background",
+     *                 property="background",
      *                 @OA\Items(ref="#/components/schemas/Background")
      *            ),
      *            @OA\Property(
-     *                 property="Work-experience",
+     *                 property="work_experience",
      *                 @OA\Items(ref="#/components/schemas/WorkExperience")
      *            )
      *         ),
