@@ -13,7 +13,7 @@ class RegistrationController extends Controller
     protected $RegistrationRepository;
 
     public function __construct( RegistrationRepository $registration_repository )
-    {   
+    {
         $this->RegistrationRepository = $registration_repository;
     }
 
@@ -74,8 +74,8 @@ class RegistrationController extends Controller
      *            @OA\Property(
      *                 property="Work-experience",
      *                 @OA\Items(ref="#/components/schemas/WorkExperience")
-     *            ) 
-     *         ),     
+     *            )
+     *         ),
      *     ),
      *     @OA\Response(
      *         response=200,
