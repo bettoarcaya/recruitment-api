@@ -34,14 +34,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "properties": {
-                                    "Job": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Job"
-                                        }
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/Job"
                             }
                         }
                     }
@@ -56,7 +49,7 @@
                 }
             }
         },
-        "/jobs/match": {
+        "/jobs/match/{jobId}": {
             "get": {
                 "tags": [
                     "Job"
@@ -115,17 +108,15 @@
                         "application/json": {
                             "schema": {
                                 "properties": {
-                                    "Person": {
-                                        "items": {
-                                            "$ref": "#/components/schemas/Person"
-                                        }
+                                    "person": {
+                                        "$ref": "#/components/schemas/Person"
                                     },
-                                    "Background": {
+                                    "background": {
                                         "items": {
                                             "$ref": "#/components/schemas/Background"
                                         }
                                     },
-                                    "Work-experience": {
+                                    "work_experience": {
                                         "items": {
                                             "$ref": "#/components/schemas/WorkExperience"
                                         }
@@ -168,13 +159,13 @@
         "schemas": {
             "Background": {
                 "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Standford"
+                    },
                     "academic_level": {
                         "type": "string",
                         "example": "University"
-                    },
-                    "work_exp_catg": {
-                        "type": "string",
-                        "example": "1"
                     }
                 },
                 "type": "object",
@@ -199,6 +190,14 @@
                     "position_type": {
                         "type": "string",
                         "example": "remote"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "job description"
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Back-end lead dev"
                     }
                 },
                 "type": "object",
@@ -234,6 +233,10 @@
                     "born_date": {
                         "type": "string",
                         "example": "YYYY-MM-DD"
+                    },
+                    "work_exp_catg": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object",
@@ -256,6 +259,10 @@
                     "position": {
                         "type": "string",
                         "example": "Backend lead developer"
+                    },
+                    "time": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object",

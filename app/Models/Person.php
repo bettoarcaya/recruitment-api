@@ -28,6 +28,13 @@ class Person extends Model
         return $this->hasMany('App\Models\WorkExperience');
     }
 
+    public function work_catg()
+    {
+        $work_catg = WorkCategory::find($this->work_exp_catg);
+
+        return $work_catg->name;
+    }
+
     public function scopeWorkCategory($query, $rules)
     {
         return $query->whereHas('backgrounds', function($q) use($rules) {

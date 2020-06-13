@@ -2,6 +2,7 @@
 
 namespace App\RecruitmentCore\MatchEngine;
 
+use App\Http\Resources\MatchCollection;
 use App\Http\Resources\PersonCollection;
 use App\Models\Job;
 use App\Models\Person;
@@ -22,13 +23,14 @@ class MatchEngine
         ];
     }
 
-    public function match(Job $job) : PersonCollection
+    public function match(Job $job) : MatchCollection
     {
         session()->put('job', $job);
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
 
-        return new PersonCollection($candidates->paginate(10));
+        //return new PersonCollection($candidates->paginate(10));
+        return new MatchCollection($candidates->paginate(10));
     }
 
     public function evaluate( Person $candidate ) : int

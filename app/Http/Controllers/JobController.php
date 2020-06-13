@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobRepository;
@@ -55,12 +56,7 @@ class JobController extends Controller
      *     @OA\RequestBody(
      *         description="Job information",
      *         required=true,
-     *         @OA\JsonContent(
-     *             @OA\Property(
-     *                 property="Job",
-     *                 @OA\Items(ref="#/components/schemas/Job")
-     *            )
-     *         ),
+     *         @OA\JsonContent(ref="#/components/schemas/Job")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -72,19 +68,19 @@ class JobController extends Controller
      *     )
      * )
     */
-    public function store(Request $request) : JsonResponse
+    public function store(JobRequest $request) : JsonResponse
     {
-        $response = $this->jobRepository->add($request->Job);
+        $response = $this->jobRepository->add($request->all());
 
         return response()->json([
-            'message' => 'Successful job registration',
+            'message' => 'Successfully job registration',
             'data'    => $response
         ], 200);
     }
 
     /**
      * @OA\Get(
-     *     path="/jobs/match",
+     *     path="/jobs/match/{jobId}",
      *     summary="List of all the available professionals to this job",
      *     tags={"Job"},
      *     @OA\Parameter(

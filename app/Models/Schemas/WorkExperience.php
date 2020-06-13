@@ -27,4 +27,10 @@ class WorkExperience
      */
     private $position;
 
+    /**
+     * @OA\Property(example="1")
+     * @var string
+     */
+    private $time;
+
 }
