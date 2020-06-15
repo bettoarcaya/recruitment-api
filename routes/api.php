@@ -19,3 +19,25 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/login', 'Api\AuthController@login');
 Route::post('/logout', 'Api\AuthController@logout');
+
+Route::middleware('auth:api')->group(function (){
+
+    Route::group(['prefix' => 'registration'], function() {
+        Route::apiResources([
+            '/' => 'RegistrationController'
+        ]);
+    });
+
+    Route::group(['prefix' => 'categories'], function () {
+        Route::apiResources([
+            '/' => 'WorkCategoryController'
+        ]);
+    });
+
+    Route::group(['prefix' => 'jobs'], function () {
+        Route::apiResources([
+            '/' => 'JobController'
+        ]);
+        Route::get('match/{job_id}', 'JobController@match');
+    });
+});
