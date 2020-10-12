@@ -120,6 +120,9 @@
                                         "items": {
                                             "$ref": "#/components/schemas/WorkExperience"
                                         }
+                                    },
+                                    "address": {
+                                        "$ref": "#/components/schemas/AddressPerson"
                                     }
                                 },
                                 "type": "object"
@@ -157,6 +160,31 @@
     },
     "components": {
         "schemas": {
+            "AddressPerson": {
+                "required": [
+                    "country",
+                    "state",
+                    "city"
+                ],
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "example": "Venezuela"
+                    },
+                    "state": {
+                        "type": "string",
+                        "example": "Anzoatgui"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "Puerto la cruz"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "Address"
+                }
+            },
             "Background": {
                 "properties": {
                     "name": {
@@ -211,7 +239,8 @@
                     "lastname",
                     "email",
                     "gender",
-                    "born_date"
+                    "born_date",
+                    "salary_expectation"
                 ],
                 "properties": {
                     "firstname": {
@@ -237,6 +266,11 @@
                     "work_exp_catg": {
                         "type": "string",
                         "example": "1"
+                    },
+                    "salary_expectation": {
+                        "type": "number",
+                        "format": "double",
+                        "example": "100,00"
                     }
                 },
                 "type": "object",

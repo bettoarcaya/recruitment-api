@@ -74,6 +74,10 @@ class RegistrationController extends Controller
      *            @OA\Property(
      *                 property="work_experience",
      *                 @OA\Items(ref="#/components/schemas/WorkExperience")
+     *            ),
+     *            @OA\Property(
+     *                 property="address",
+     *                 ref="#/components/schemas/AddressPerson"
      *            )
      *         ),
      *     ),

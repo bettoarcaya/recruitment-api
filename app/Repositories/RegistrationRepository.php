@@ -14,8 +14,14 @@ class RegistrationRepository
 		$person = Person::create($data['person']);
 		$background = $person->backgrounds()->createMany($data['background']);
 		$work_exp = $person->work_experiences()->createMany($data['work_experience']);
+		$address = $person->address()->create($data['address']);
 
-		return compact('person', 'background', 'work_exp');
+		return compact(
+			'person', 
+			'background', 
+			'work_exp', 
+			'address'
+		);
 	}
 
 	public function getAll() : PersonCollection
@@ -23,7 +29,8 @@ class RegistrationRepository
 		//return Person::with(['backgrounds', 'work_experiences'])->get();
         $people = Person::with([
             'backgrounds',
-            'work_experiences'
+			'work_experiences',
+			'address'
         ])->paginate(10);
 
         return new PersonCollection($people);
@@ -31,9 +38,13 @@ class RegistrationRepository
 
 	public function getByWorkCatg( array $rules )
     {
-        return Person::with(['backgrounds', 'work_experiences'])
-            ->whereIn('work_exp_catg', $rules)
-            ->whereExperience();
+        return Person::with([
+			'backgrounds', 
+			'work_experiences', 
+			'address'
+		])
+        ->whereIn('work_exp_catg', $rules)
+        ->whereExperience();
 
     }
 }

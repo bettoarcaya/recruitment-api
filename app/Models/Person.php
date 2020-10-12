@@ -8,14 +8,19 @@ use DB;
 class Person extends Model
 {
     protected $table = 'people';
-    protected $with = ['backgrounds', 'work_experiences'];
+    protected $with = [
+        'backgrounds', 
+        'work_experiences', 
+        'address'
+    ];
     protected $fillable = [
         'firstname',
         'lastname',
         'email',
         'gender',
         'born_date',
-        'work_exp_catg'
+        'work_exp_catg',
+        'salary_expectation'
     ];
 
     public function backgrounds()
@@ -33,6 +38,11 @@ class Person extends Model
         $work_catg = WorkCategory::find($this->work_exp_catg);
 
         return $work_catg->name;
+    }
+
+    public function address()
+    {
+        return $this->hasOne('App\Models\AddressPerson');
     }
 
     public function scopeWorkCategory($query, $rules)
