@@ -7,8 +7,9 @@ use App\Http\Resources\PersonCollection;
 use App\Models\Job;
 use App\Models\Person;
 use App\Repositories\RegistrationRepository;
+use App\RecruitmentCore\MatchEngine\Rules;
 
-class MatchEngine
+class MatchEngine extends Rules
 {
     private $rules;
     protected $RegistrationRepository;
@@ -29,8 +30,20 @@ class MatchEngine
         $rules = $this->rules[$job->catg_position_id];
         $candidates = $this->RegistrationRepository->getByWorkCatg($rules);
 
-        //return new PersonCollection($candidates->paginate(10));
         return new MatchCollection($candidates->paginate(10));
+    }
+
+    public function search(array $request) : MatchCollection
+    {
+        session()->put('job', $request);
+        $data = [
+            'position' => self::POSITIONS[$request['catg_position_id']],
+            'experience_years' => $request['experience_years']
+        ];
+        $candidates = $this->RegistrationRepository->getCandidates($data);
+
+        dd($candidates);
+        //return new MatchCollection($candidates->paginate(10));
     }
 
     public function evaluate( Person $candidate ) : int

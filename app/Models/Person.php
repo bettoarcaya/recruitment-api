@@ -77,4 +77,28 @@ class Person extends Model
         });
     }
 
+    public function scopeWhereExperienceBy($query, $years)
+    {
+        $available = [];
+
+        //WORKARROUND this logic should be in the sql query but i've had some troubles to implementing it
+        // ---------------------------------------------------------------------------------------------
+        foreach ($query->get() as $person){
+            $sum = 0;
+
+            foreach ($person->work_experiences as $work_exp){
+                $sum += $work_exp->time;
+            }
+
+            if( $sum >= $years ){
+                $available[] = $person->id;
+            }
+        }
+        // -----------------------------------------------------------------------------------------------
+
+        return $query->whereHas('work_experiences', function($q) use ($available){
+            $q->whereIn('person_id', $available);
+        });
+    }
+
 }

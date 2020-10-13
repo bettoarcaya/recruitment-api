@@ -111,7 +111,17 @@ class JobController extends Controller
         return response()->json([
             'message' => 'Candidate List for this Job',
             'data' => $response
-        ]);
+        ], 200);
+    }
+
+    public function searchCandidates(searchCandidates $request) : JsonResponse
+    {
+        $response = $this->matchEngine->search($request->all());
+        
+        return response()->json([
+            'message' => 'Candidates',
+            'data' => $response
+        ], 200);
     }
 
 }

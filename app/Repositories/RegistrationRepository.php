@@ -26,8 +26,7 @@ class RegistrationRepository
 
 	public function getAll() : PersonCollection
 	{
-		//return Person::with(['backgrounds', 'work_experiences'])->get();
-        $people = Person::with([
+		$people = Person::with([
             'backgrounds',
 			'work_experiences',
 			'address'
@@ -46,5 +45,19 @@ class RegistrationRepository
         ->whereIn('work_exp_catg', $rules)
         ->whereExperience();
 
-    }
+	}
+	
+	public function getCandidates(array $data)
+	{
+		$response = Person::with([
+			'backgrounds', 
+			'work_experiences', 
+			'address'
+		])
+		->whereIn('work_exp_catg', $data['position'])
+		->whereExperienceBy($data['experience_years']);
+
+
+		return $response;
+	}
 }

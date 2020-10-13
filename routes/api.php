@@ -39,5 +39,6 @@ Route::middleware('auth:api')->group(function (){
             '/' => 'JobController'
         ]);
         Route::get('match/{job_id}', 'JobController@match');
+        Route::post('search', 'JobController@searchCandidates');
     });
 });
