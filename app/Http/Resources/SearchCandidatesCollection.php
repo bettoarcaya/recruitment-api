@@ -2,10 +2,20 @@
 
 namespace App\Http\Resources;
 
+use App\RecruitmentCore\MatchEngine\MatchEngine;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class SearchCandidatesCollection extends ResourceCollection
 {
+    protected $engine;
+
+    public function __construct($resource)
+    {
+        parent::__construct($resource);
+        $this->engine = new MatchEngine();
+    }
+
     /**
      * Transform the resource collection into an array.
      *

@@ -3,6 +3,7 @@
 namespace App\RecruitmentCore\MatchEngine;
 
 use App\Http\Resources\MatchCollection;
+use App\Http\Resources\SearchCandidatesCollection;
 use App\Http\Resources\PersonCollection;
 use App\Models\Job;
 use App\Models\Person;
@@ -33,7 +34,7 @@ class MatchEngine extends Rules
         return new MatchCollection($candidates->paginate(10));
     }
 
-    public function search(array $request) : MatchCollection
+    public function search(array $request) : SearchCandidatesCollection
     {
         session()->put('job', $request);
         $data = [
@@ -71,6 +72,13 @@ class MatchEngine extends Rules
         foreach ($candidate->work_experiences as $work_experience){
             $sum += $work_experience->time;
         }
+
+        $result += ( $candidate->work_exp_catg == $job['catg_position_id'] ) 
+            ? self::LEVELS['catg_position_id'] 
+            : self::LEVELS['catg_position_id'] / 2;
+        $result += ( $sum / $job['experience_years'] ) * self::LEVELS['experience_years'];
+
+        return $result;
     }
 
 }
