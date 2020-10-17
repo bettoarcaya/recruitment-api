@@ -20,7 +20,8 @@ class Person extends Model
         'gender',
         'born_date',
         'work_exp_catg',
-        'salary_expectation'
+        'salary_expectation',
+        'work_type_available'
     ];
 
     public function backgrounds()
@@ -44,6 +45,15 @@ class Person extends Model
     {
         return $this->hasOne('App\Models\AddressPerson');
     }
+
+    public function work_types()
+    {
+        $work_type_available = WorkType::find($this->work_type_available);
+
+        return $work_type_available->name;
+    }
+
+    // Query scopes section....
 
     public function scopeWorkCategory($query, $rules)
     {

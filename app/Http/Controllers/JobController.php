@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobRepository;
 use App\RecruitmentCore\MatchEngine\MatchEngine;
+use App\Http\Requests\SearchCandidate;
 
 class JobController extends Controller
 {
@@ -113,8 +114,8 @@ class JobController extends Controller
             'data' => $response
         ], 200);
     }
-
-    public function searchCandidates(searchCandidates $request) : JsonResponse
+                    
+    public function search(SearchCandidate $request) : JsonResponse
     {
         $response = $this->matchEngine->search($request->all());
         

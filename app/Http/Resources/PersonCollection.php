@@ -38,7 +38,8 @@ class PersonCollection extends ResourceCollection
                       'gender' => $row->gender,
                       'born_date' => $row->born_date,
                       'work_exp_catg' => $row->work_catg(),
-                      'age' => Carbon::parse($row->born_date)->age
+                      'age' => Carbon::parse($row->born_date)->age,
+                      'work_type_available' => $row->work_type_available
                   ], //$person->fill($row->toArray()),
                   'backgrounds' => $row->backgrounds,
                   'work_experiences' => $row->work_experiences,

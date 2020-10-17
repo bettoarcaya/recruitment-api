@@ -38,12 +38,12 @@ class MatchEngine extends Rules
         session()->put('job', $request);
         $data = [
             'position' => self::POSITIONS[$request['catg_position_id']],
-            'experience_years' => $request['experience_years']
+            'experience_years' => $request['experience_years'],
+            'work_type' => $request['work_type_available']
         ];
         $candidates = $this->RegistrationRepository->getCandidates($data);
 
-        dd($candidates);
-        //return new MatchCollection($candidates->paginate(10));
+        return new SearchCandidatesCollection($candidates->paginate(10));
     }
 
     public function evaluate( Person $candidate ) : int
@@ -60,6 +60,17 @@ class MatchEngine extends Rules
         $result += ( $sum / $job->experience_years ) * 10;
 
         return ($result > 100) ? 100 : $result;
+    }
+
+    public function evaluateSearch( Person $candidate ): int
+    {
+        $job = session()->get('job');
+        $result = 0;
+        $sum = 0;
+
+        foreach ($candidate->work_experiences as $work_experience){
+            $sum += $work_experience->time;
+        }
     }
 
 }

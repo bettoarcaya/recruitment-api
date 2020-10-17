@@ -55,6 +55,7 @@ class RegistrationRepository
 			'address'
 		])
 		->whereIn('work_exp_catg', $data['position'])
+		//->where('work_type_available', $data['work_type_available'])
 		->whereExperienceBy($data['experience_years']);
 
 

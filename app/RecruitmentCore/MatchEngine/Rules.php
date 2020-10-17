@@ -12,6 +12,7 @@ Abstract Class Rules
     const LEVELS = [
         'catg_position_id' => 50,
         'experience_years' => 40,
-        'address' => 50
+        'address' => 50,
+        'work_type_available' => 50
     ];
 }

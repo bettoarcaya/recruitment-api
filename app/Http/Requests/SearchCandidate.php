@@ -28,6 +28,7 @@ class SearchCandidate extends FormRequest
             'experience_years' => 'required',
             'work_type_id' => 'required',
             'salary_offer' => 'required',
+            'work_type_available' => 'required'
         ];
     }
 }
