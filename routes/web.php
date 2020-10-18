@@ -35,4 +35,5 @@ Route::group(['prefix' => 'jobs'], function () {
         '/' => 'JobController'
     ]);
     Route::get('match/{job_id}', 'JobController@match');
+    Route::post('search', 'JobController@search');
 });

@@ -78,6 +78,35 @@
                 }
             }
         },
+        "/jobs/search": {
+            "post": {
+                "tags": [
+                    "Search Candidates"
+                ],
+                "summary": "Get candidates for a position",
+                "description": "Search candidates by an specifications",
+                "operationId": "search",
+                "requestBody": {
+                    "description": "Job information for candidates",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SearchCandidates"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Available candidates"
+                    },
+                    "405": {
+                        "description": "Invalid input"
+                    }
+                }
+            }
+        },
         "/registration": {
             "get": {
                 "tags": [
@@ -240,7 +269,8 @@
                     "email",
                     "gender",
                     "born_date",
-                    "salary_expectation"
+                    "salary_expectation",
+                    "work_types_available"
                 ],
                 "properties": {
                     "firstname": {
@@ -271,11 +301,48 @@
                         "type": "number",
                         "format": "double",
                         "example": "100,00"
+                    },
+                    "work_types_available": {
+                        "type": "string",
+                        "example": "1"
                     }
                 },
                 "type": "object",
                 "xml": {
                     "name": "Person"
+                }
+            },
+            "SearchCandidates": {
+                "properties": {
+                    "catg_position_id": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "experience_years": {
+                        "type": "string",
+                        "example": "5"
+                    },
+                    "salary_offer": {
+                        "type": "number",
+                        "format": "float",
+                        "example": "50.00"
+                    },
+                    "work_type_available": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "venezuela"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "caracas"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "SearchCandidates"
                 }
             },
             "WorkExperience": {
