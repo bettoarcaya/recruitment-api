@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class EditPeopleTable extends Migration
+class AddingWorkTypeAvaliblePeopleTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +15,13 @@ class EditPeopleTable extends Migration
     {
         Schema::table('people', function($table){
             $table
-                ->unsignedBigInteger('work_exp_catg')
-                ->default(1);
+                ->unsignedBigInteger('work_type_available')
+                ->nullable();
 
             $table
-                ->foreign('work_exp_catg')
+                ->foreign('work_type_available')
                 ->references('id')
-                ->on('experience_categories');
+                ->on('work_types');
         });
     }
 

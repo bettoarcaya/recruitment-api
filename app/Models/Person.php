@@ -20,7 +20,8 @@ class Person extends Model
         'gender',
         'born_date',
         'work_exp_catg',
-        'salary_expectation'
+        'salary_expectation',
+        'work_type_available'
     ];
 
     public function backgrounds()
@@ -44,6 +45,15 @@ class Person extends Model
     {
         return $this->hasOne('App\Models\AddressPerson');
     }
+
+    public function work_types()
+    {
+        $work_type_available = WorkType::find($this->work_type_available);
+
+        return ($work_type_available) ? $work_type_available->name : null;
+    }
+
+    // Query scopes section....
 
     public function scopeWorkCategory($query, $rules)
     {
@@ -74,6 +84,37 @@ class Person extends Model
 
         return $query->whereHas('work_experiences', function($q) use ($available){
             $q->whereIn('person_id', $available);
+        });
+    }
+
+    public function scopeWhereExperienceBy($query, $years)
+    {
+        $available = [];
+
+        //WORKARROUND this logic should be in the sql query but i've had some troubles to implementing it
+        // ---------------------------------------------------------------------------------------------
+        foreach ($query->get() as $person){
+            $sum = 0;
+
+            foreach ($person->work_experiences as $work_exp){
+                $sum += $work_exp->time;
+            }
+
+            if( $sum >= $years ){
+                $available[] = $person->id;
+            }
+        }
+        // -----------------------------------------------------------------------------------------------
+
+        return $query->whereHas('work_experiences', function($q) use ($available){
+            $q->whereIn('person_id', $available);
+        });
+    }
+
+    public function scopeWhereIsLocated($query, $country)
+    {
+        return $query->whereHas('address', function($q) use ($country){
+            $q->where('country', $country);
         });
     }
 
