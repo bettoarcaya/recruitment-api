@@ -30,7 +30,6 @@ class PersonCollection extends ResourceCollection
             'candidates' => $this->collection->transform(function($row) {
                 $person = new Person();
               return [
-                  //'percentage' => $this->engine->evaluate($row),
                   'personal_data' => [
                       'firstname' => $row->firstname,
                       'lastname' => $row->lastname,
@@ -39,10 +38,11 @@ class PersonCollection extends ResourceCollection
                       'born_date' => $row->born_date,
                       'work_exp_catg' => $row->work_catg(),
                       'age' => Carbon::parse($row->born_date)->age,
-                      'work_type_available' => $row->work_type_available
+                      'work_type_available' => $row->work_types()
                   ], //$person->fill($row->toArray()),
                   'backgrounds' => $row->backgrounds,
                   'work_experiences' => $row->work_experiences,
+                  'address' => $row->address
               ];
             }),
             'links' => [

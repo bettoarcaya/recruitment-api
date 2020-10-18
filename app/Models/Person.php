@@ -50,7 +50,7 @@ class Person extends Model
     {
         $work_type_available = WorkType::find($this->work_type_available);
 
-        return $work_type_available->name;
+        return ($work_type_available) ? $work_type_available->name : null;
     }
 
     // Query scopes section....
@@ -108,6 +108,13 @@ class Person extends Model
 
         return $query->whereHas('work_experiences', function($q) use ($available){
             $q->whereIn('person_id', $available);
+        });
+    }
+
+    public function scopeWhereIsLocated($query, $country)
+    {
+        return $query->whereHas('address', function($q) use ($country){
+            $q->where('country', $country);
         });
     }
 

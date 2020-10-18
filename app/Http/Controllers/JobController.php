@@ -114,7 +114,29 @@ class JobController extends Controller
             'data' => $response
         ], 200);
     }
-                    
+           
+    /**
+     * @OA\Post(
+     *     path="/jobs/search",
+     *     summary="Get candidates for a position",
+     *     tags={"Search Candidates"},
+     *     operationId="search",
+     *     description="Search candidates by an specifications",
+     *     @OA\RequestBody(
+     *         description="Job information for candidates",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/SearchCandidates")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Available candidates"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input",
+     *     )
+     * )
+    */
     public function search(SearchCandidate $request) : JsonResponse
     {
         $response = $this->matchEngine->search($request->all());

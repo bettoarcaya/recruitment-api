@@ -40,7 +40,9 @@ class MatchEngine extends Rules
         $data = [
             'position' => self::POSITIONS[$request['catg_position_id']],
             'experience_years' => $request['experience_years'],
-            'work_type' => $request['work_type_available']
+            'work_type' => $request['work_type_available'],
+            'country' => $request['country'],
+            'city' => $request['city']
         ];
         $candidates = $this->RegistrationRepository->getCandidates($data);
 
@@ -76,7 +78,14 @@ class MatchEngine extends Rules
         $result += ( $candidate->work_exp_catg == $job['catg_position_id'] ) 
             ? self::LEVELS['catg_position_id'] 
             : self::LEVELS['catg_position_id'] / 2;
+
         $result += ( $sum / $job['experience_years'] ) * self::LEVELS['experience_years'];
+
+        if($job['work_type_available'] == 2){
+            $result += ( strtolower($candidate->address()->first()->city) == strtolower($job['city']) )
+                ? self::LEVELS['address']
+                : self::LEVELS['address'] / 2;
+        }
 
         return $result;
     }

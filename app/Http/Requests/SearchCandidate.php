@@ -26,7 +26,6 @@ class SearchCandidate extends FormRequest
         return [
             'catg_position_id' => 'required',
             'experience_years' => 'required',
-            'work_type_id' => 'required',
             'salary_offer' => 'required',
             'work_type_available' => 'required'
         ];
