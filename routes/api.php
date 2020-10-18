@@ -41,4 +41,8 @@ Route::middleware('auth:api')->group(function (){
         Route::get('match/{job_id}', 'JobController@match');
         Route::post('search', 'JobController@search');
     });
+
+    Route::group(['prefix' => 'data'], function () {
+        Route::get('search/candidates', 'DataController@searchCandidates');
+    });
 });

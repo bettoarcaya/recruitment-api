@@ -5,6 +5,23 @@
         "version": "1.0"
     },
     "paths": {
+        "/data/search/candidates": {
+            "get": {
+                "tags": [
+                    "Data Search"
+                ],
+                "summary": "List of all the select data for search candidates",
+                "operationId": "App\\Http\\Controllers\\DataController::searchCandidates",
+                "responses": {
+                    "200": {
+                        "description": "All the neccesary data"
+                    },
+                    "default": {
+                        "description": "something is bad."
+                    }
+                }
+            }
+        },
         "/jobs": {
             "get": {
                 "tags": [
