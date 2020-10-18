@@ -10,7 +10,8 @@ namespace App\Models\Schemas;
  *    "email",
  *    "gender",
  *    "born_date",
- *    "salary_expectation"
+ *    "salary_expectation",
+ *    "work_types_available"
  *  },
  * @OA\Xml(name="Person"))
  */
@@ -58,5 +59,11 @@ class Person
      * @var double
      */
     private $salary_expectation;
+
+    /**
+     * @OA\Property(example="1")
+     * @var string
+     */
+    private $work_types_available;
 
 }

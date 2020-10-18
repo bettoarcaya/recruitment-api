@@ -26,8 +26,7 @@ class RegistrationRepository
 
 	public function getAll() : PersonCollection
 	{
-		//return Person::with(['backgrounds', 'work_experiences'])->get();
-        $people = Person::with([
+		$people = Person::with([
             'backgrounds',
 			'work_experiences',
 			'address'
@@ -46,5 +45,24 @@ class RegistrationRepository
         ->whereIn('work_exp_catg', $rules)
         ->whereExperience();
 
-    }
+	}
+	
+	public function getCandidates(array $data)
+	{
+		$response = Person::with([
+			'backgrounds', 
+			'work_experiences', 
+			'address'
+		])
+		->whereIn('work_exp_catg', $data['position'])
+		->where('work_type_available', $data['work_type'])
+		->whereExperienceBy($data['experience_years']);
+
+		if($data['work_type'] == 2){
+			$response->whereIsLocated($data['country']);
+		}
+
+
+		return $response;
+	}
 }

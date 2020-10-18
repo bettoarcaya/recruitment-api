@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Repositories\JobRepository;
 use App\RecruitmentCore\MatchEngine\MatchEngine;
+use App\Http\Requests\SearchCandidate;
 
 class JobController extends Controller
 {
@@ -111,7 +112,39 @@ class JobController extends Controller
         return response()->json([
             'message' => 'Candidate List for this Job',
             'data' => $response
-        ]);
+        ], 200);
+    }
+           
+    /**
+     * @OA\Post(
+     *     path="/jobs/search",
+     *     summary="Get candidates for a position",
+     *     tags={"Search Candidates"},
+     *     operationId="search",
+     *     description="Search candidates by an specifications",
+     *     @OA\RequestBody(
+     *         description="Job information for candidates",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/SearchCandidates")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Available candidates"
+     *     ),
+     *     @OA\Response(
+     *         response=405,
+     *         description="Invalid input",
+     *     )
+     * )
+    */
+    public function search(SearchCandidate $request) : JsonResponse
+    {
+        $response = $this->matchEngine->search($request->all());
+        
+        return response()->json([
+            'message' => 'Candidates',
+            'data' => $response
+        ], 200);
     }
 
 }
