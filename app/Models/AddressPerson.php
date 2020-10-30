@@ -27,4 +27,19 @@ class AddressPerson extends Model
     {
         $this->attributes['city'] = strtolower($value);
     }
+
+    public function getCountryAttribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function getStateAtribute($value)
+    {
+        return ucfirst($value);
+    }
+
+    public function getCityAttribute($value)
+    {
+        return ucfirst($value);
+    }
 }
