@@ -114,7 +114,7 @@ class Person extends Model
     public function scopeWhereIsLocated($query, $country)
     {
         return $query->whereHas('address', function($q) use ($country){
-            $q->where('country', $country);
+            $q->where('country', strtolower($country));
         });
     }
 

@@ -12,4 +12,19 @@ class AddressPerson extends Model
         'state',
         'city'
     ];
+
+    public function setCountryAttribute($value)
+    {
+        $this->attributes['country'] = strtolower($value);
+    }
+
+    public function setStateAtribute($value)
+    {
+        $this->attributes['state'] = strtolower($value);
+    }
+
+    public function setCityAttribute($value)
+    {
+        $this->attributes['city'] = strtolower($value);
+    }
 }
