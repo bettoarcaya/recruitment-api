@@ -20,7 +20,7 @@ Class AddressPerson
     private $country;
 
     /**
-     * @OA\Property(example="Anzoatgui")
+     * @OA\Property(example="Anzoategui")
      * @var string
      */
     private $state;

@@ -219,7 +219,7 @@
                     },
                     "state": {
                         "type": "string",
-                        "example": "Anzoatgui"
+                        "example": "Anzoategui"
                     },
                     "city": {
                         "type": "string",
@@ -317,9 +317,9 @@
                     "salary_expectation": {
                         "type": "number",
                         "format": "double",
-                        "example": "100,00"
+                        "example": "100.00"
                     },
-                    "work_types_available": {
+                    "work_type_available": {
                         "type": "string",
                         "example": "1"
                     }

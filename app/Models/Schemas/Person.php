@@ -55,7 +55,7 @@ class Person
     private $work_exp_catg;
 
     /**
-     * @OA\Property(example="100,00")
+     * @OA\Property(example="100.00")
      * @var double
      */
     private $salary_expectation;
@@ -64,6 +64,6 @@ class Person
      * @OA\Property(example="1")
      * @var string
      */
-    private $work_types_available;
+    private $work_type_available;
 
 }
